@@ -1,0 +1,161 @@
+/* Cards (skills, projects), tags, bullet lists, notes */
+.card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+/* Hover: the card lifts and a hard shadow appears beneath it, like the portrait */
+.card:hover {
+  border-color: var(--color-primary);
+  box-shadow: 6px 6px 0 var(--shadow-hard);
+  transform: translate(-3px, -3px);
+}
+
+.skill-card,
+.project-card {
+  border-top: 3px solid var(--color-primary);
+}
+
+.card__title {
+  font-size: var(--text-xl);
+}
+
+.card__text {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+}
+
+.card__icon {
+  display: grid;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--color-primary-dark);
+  background: var(--color-cyan-50);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.card:hover .card__icon {
+  color: var(--color-deep);
+  background: var(--color-primary);
+}
+
+/* Tags */
+.tag-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+}
+
+.tag {
+  padding: 0.25rem 0.75rem;
+  font-size: var(--text-xs);
+  font-weight: 600;
+  color: var(--color-text);
+  background: var(--color-cyan-50);
+  border: 1px solid var(--color-border);
+  border-radius: 999px;
+  transition: border-color var(--transition);
+}
+
+.tag:hover {
+  border-color: var(--color-primary);
+}
+
+/* Project card: picture on top, text below. Long texts are shortened here (the project page has the full text). */
+.project-card {
+  padding: 0;
+  overflow: hidden;
+}
+
+.project-card__body {
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+}
+
+.project-card__body .card__title,
+.project-card__overview,
+.project-card__role {
+  display: -webkit-box;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+}
+
+.project-card__body .card__title {
+  font-size: var(--text-lg);
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.project-card__overview {
+  font-size: var(--text-sm);
+  color: var(--color-muted);
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+}
+
+.project-card__role {
+  font-size: var(--text-sm);
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.project-card .link-arrow {
+  margin-top: auto;
+}
+
+/* The whole card is clickable (the link covers it), except while editing so the text can be clicked */
+.project-card .link-arrow::after {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  content: '';
+}
+
+.is-editing-text .project-card .link-arrow::after {
+  display: none;
+}
+
+/* Lists and notes */
+.bullet-list {
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+
+.bullet-list li {
+  position: relative;
+  padding-left: var(--space-4);
+}
+
+.bullet-list li::before {
+  position: absolute;
+  top: 0.6em;
+  left: 0;
+  width: 6px;
+  height: 6px;
+  content: '';
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+.placeholder-note {
+  font-size: var(--text-xs);
+  font-style: italic;
+  color: var(--color-muted);
+}

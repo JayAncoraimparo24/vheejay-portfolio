@@ -1,0 +1,172 @@
+/* Contact section (on the dark background) and the footer */
+.contact {
+  display: grid;
+  gap: var(--space-6);
+}
+
+.contact__list {
+  display: grid;
+  gap: var(--space-4);
+  align-content: start;
+}
+
+.contact__row {
+  position: relative;
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+/* The whole row (icon and text) is one big tap target instead of just the small text link */
+.contact__row a::after {
+  position: absolute;
+  inset: 0;
+  content: '';
+}
+
+.is-editing-text .contact__row a::after {
+  display: none;
+}
+
+.contact__icon {
+  display: grid;
+  flex-shrink: 0;
+  place-items: center;
+  width: 2.75rem;
+  height: 2.75rem;
+  color: var(--color-primary);
+  border: 1px solid rgb(255 255 255 / 20%);
+  border-radius: var(--radius-sm);
+  transition:
+    background-color var(--transition),
+    color var(--transition);
+}
+
+.contact__row:hover .contact__icon {
+  color: var(--color-deep);
+  background: var(--color-primary);
+}
+
+.contact__label {
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--color-muted-on-dark);
+}
+
+.section--dark a {
+  color: var(--color-on-dark);
+  overflow-wrap: anywhere;
+}
+
+.section--dark a:hover {
+  color: var(--color-primary);
+}
+
+.section--dark .placeholder-note {
+  font-size: var(--text-base);
+  color: var(--color-muted-on-dark);
+}
+
+.form {
+  display: grid;
+  gap: var(--space-4);
+  padding: var(--space-5);
+  background: rgb(255 255 255 / 4%);
+  border: 1px solid rgb(255 255 255 / 12%);
+  border-radius: var(--radius-md);
+}
+
+.form .btn {
+  justify-self: start;
+}
+
+.field {
+  display: grid;
+  gap: var(--space-1);
+}
+
+.field label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-on-dark);
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: 0.7rem 0.9rem;
+  color: var(--color-navy);
+  background: var(--color-white);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition);
+}
+
+.field input:focus,
+.field textarea:focus {
+  border-color: var(--color-primary);
+  outline: none;
+  box-shadow: 0 0 0 3px rgb(6 182 212 / 35%);
+}
+
+.form__status {
+  min-height: 1.5em;
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+}
+
+/* Footer */
+.site-footer {
+  padding-block: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--color-muted-on-dark);
+  background: #0a1020;
+}
+
+/* Three aligned parts: copyright on the left, role in the centre, "Back to top" on the right.
+   On phones they stack and are centred. */
+.site-footer__inner {
+  display: grid;
+  gap: var(--space-2);
+  justify-items: center;
+  text-align: center;
+}
+
+.site-footer__top {
+  color: var(--color-primary);
+}
+
+/* While editing on your own computer the floating toolbar sits over the footer, so leave room for it */
+body:has(.edit-toolbar) .site-footer {
+  padding-bottom: 4.5rem;
+}
+
+@media (min-width: 40rem) {
+  .site-footer__inner {
+    grid-template-columns: 1fr auto 1fr;
+    align-items: center;
+    text-align: left;
+  }
+
+  .site-footer__roles {
+    text-align: center;
+  }
+
+  .site-footer__top {
+    justify-self: end;
+  }
+
+  .site-footer__inner > :first-child {
+    justify-self: start;
+  }
+}
+
+@media (min-width: 56rem) {
+  .contact {
+    grid-template-columns: 1fr 1.2fr;
+  }
+}
