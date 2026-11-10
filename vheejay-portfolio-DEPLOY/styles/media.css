@@ -1,0 +1,164 @@
+/* Pictures: frames, placeholders, captions, and the gallery layouts */
+.media__box {
+  position: relative;
+  aspect-ratio: var(--media-ratio, 16 / 10);
+  overflow: hidden;
+  background: var(--color-cyan-50);
+  border: 1px dashed var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.media:hover .media__box {
+  border-color: var(--color-primary);
+  box-shadow: 5px 5px 0 var(--shadow-hard);
+  transform: translate(-2px, -2px);
+}
+
+.media__img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border: 0;
+  transition: transform 600ms var(--ease-out);
+}
+
+/* When a picture scrolls into view it uncovers itself from the top */
+.media.is-visible .media__img {
+  animation: picture-reveal 900ms var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes picture-reveal {
+  from {
+    clip-path: inset(0 0 100% 0);
+    transform: scale(1.1);
+  }
+}
+
+.media__link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  cursor: zoom-in;
+}
+
+.media__placeholder {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-3);
+  text-align: center;
+  color: var(--color-primary-dark);
+}
+
+.media__label {
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+.media__hint {
+  font-size: var(--text-xs);
+  color: var(--color-muted);
+}
+
+.media__caption {
+  margin-top: var(--space-2);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+}
+
+/* Inside a project card: a shorter picture area that keeps the top-left of a screenshot visible */
+.project-card .media__box {
+  --media-ratio: 5 / 2;
+
+  border-width: 0 0 1px;
+  border-radius: 0;
+}
+
+.project-card:hover .media__box {
+  box-shadow: none;
+  transform: none;
+}
+
+.project-card .media__img {
+  object-position: left top;
+}
+
+.project-card:hover .media__img {
+  transform: scale(1.04);
+}
+
+/* Project screenshots: show the whole screen instead of cropping it */
+.grid--shots {
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  align-items: start;
+}
+
+.grid--shots .media__img {
+  object-fit: contain;
+  background: var(--color-white);
+}
+
+/* Gallery tabs: one tab per kind of work, one panel shown at a time */
+.gallery-tabs {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-5);
+}
+
+.gallery-tabs__tab {
+  padding: 0.6rem 1.25rem;
+  font-size: var(--text-sm);
+  font-weight: 600;
+  color: var(--color-text);
+  cursor: pointer;
+  background: transparent;
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    color var(--transition);
+}
+
+.gallery-tabs__tab:hover {
+  background: var(--color-cyan-50);
+  border-color: var(--color-primary);
+}
+
+.gallery-tabs__tab[aria-selected='true'] {
+  color: var(--color-deep);
+  background: var(--color-primary);
+  border-color: var(--color-primary);
+}
+
+.gallery-panel[hidden] {
+  display: none;
+}
+
+.gallery-panel__intro {
+  margin-bottom: var(--space-5);
+}
+
+/* Photography, graphic design, and IT support: masonry columns so tall, square, and wide pictures
+   sit together without cropping (each picture sets its own ratio from data/showcases.js) */
+.photo-masonry {
+  column-gap: var(--space-5);
+  column-width: 16rem;
+}
+
+.photo-masonry .media {
+  margin-bottom: var(--space-5);
+  break-inside: avoid;
+}

@@ -1,0 +1,38 @@
+/*
+ * Dark theme, switched by <html data-theme="dark"> (js/theme.js).
+ * In this theme --color-white means "page surface" and --color-navy means "strong text",
+ * so almost every component recolours itself with no extra rules.
+ * The night version of the portrait is in hero.css.
+ */
+:root[data-theme='dark'] {
+  color-scheme: dark;
+
+  --color-white: #0b1326;
+  --color-navy: #e8f4fa;
+  --color-cyan-50: #0f1e38;
+  --color-text: #d5e0ec;
+  --color-muted: #94a3b8;
+  --color-border: #22304a;
+  --color-primary-dark: #22d3ee;
+
+  --shadow-hard: #0e7490;
+  --header-glass: rgb(11 19 38 / 86%);
+  --dot-color: rgb(103 232 249 / 14%);
+  --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
+  --shadow-md: 0 8px 24px rgb(0 0 0 / 45%);
+}
+
+/* While the visitor switches theme (js/theme.js adds .theme-fade for half a second),
+   colours glide instead of snapping. The eyelids keep their own slower timing. */
+.theme-fade,
+.theme-fade *:not(.hero__eyelid),
+.theme-fade *:not(.hero__eyelid)::before,
+.theme-fade *:not(.hero__eyelid)::after {
+  transition:
+    background-color 450ms ease,
+    color 450ms ease,
+    border-color 450ms ease,
+    fill 450ms ease,
+    stroke 450ms ease,
+    filter 450ms ease !important;
+}

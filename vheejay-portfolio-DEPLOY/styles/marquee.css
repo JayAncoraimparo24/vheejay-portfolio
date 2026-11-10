@@ -1,0 +1,68 @@
+/* Slowly scrolling strip of tool names under the hero (decorative; see sections/toolsMarquee.js) */
+.marquee {
+  overflow: hidden;
+  background: var(--color-white);
+  border-block: 1px solid var(--color-border);
+  mask-image: linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent);
+}
+
+.marquee__track {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 38s linear infinite;
+}
+
+.marquee:hover .marquee__track {
+  animation-play-state: paused;
+}
+
+.marquee__group {
+  display: flex;
+  flex-shrink: 0;
+  gap: var(--space-6);
+  padding: var(--space-4) var(--space-3);
+}
+
+.marquee__item {
+  display: flex;
+  gap: var(--space-6);
+  align-items: center;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  color: var(--color-muted);
+  white-space: nowrap;
+  text-transform: uppercase;
+}
+
+.marquee__item::after {
+  width: 6px;
+  height: 6px;
+  content: '';
+  background: var(--color-primary);
+  border-radius: 50%;
+}
+
+/* The track holds two identical groups and moves by exactly one group, so the loop is seamless */
+@keyframes marquee-scroll {
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+/* Reduced motion: show the names as a wrapped list instead of a moving strip */
+@media (prefers-reduced-motion: reduce) {
+  .marquee {
+    mask-image: none;
+  }
+
+  .marquee__track {
+    flex-wrap: wrap;
+    width: auto;
+  }
+
+  .marquee__group:nth-child(2) {
+    display: none;
+  }
+}

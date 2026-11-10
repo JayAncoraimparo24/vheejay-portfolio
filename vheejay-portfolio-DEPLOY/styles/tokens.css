@@ -1,0 +1,67 @@
+/*
+ * Design tokens: every colour, size, and timing used by the other stylesheets.
+ * Dark-theme overrides live in theme-dark.css.
+ */
+:root {
+  /* Brand palette */
+  --color-primary: #06b6d4;
+  --color-primary-dark: #0e7490; /* readable cyan for text on light backgrounds */
+  --color-navy: #0f172a; /* strong text (flips to a light colour in dark mode) */
+  --color-white: #ffffff; /* page surface (flips to a dark colour in dark mode) */
+  --color-cyan-50: #ecfeff;
+  --color-text: #1e293b;
+  --color-muted: #64748b;
+  --color-border: #e2e8f0;
+  --color-muted-on-dark: #cbd5e1;
+
+  /* Fixed colours: they never change with the theme */
+  --color-on-dark: #ffffff; /* text on always-dark areas */
+  --color-deep: #0f172a; /* always-dark fills, and text on cyan */
+  --shadow-hard: var(--color-deep); /* the offset "print" shadow used on the portrait, cards, and buttons */
+  --header-glass: rgb(255 255 255 / 86%);
+
+  /* Dot-grid texture */
+  --dot-color: rgb(14 116 144 / 22%);
+  --dot-size: 22px;
+
+  /* Typography */
+  --font-sans: 'Segoe UI', system-ui, -apple-system, 'Helvetica Neue', Arial, sans-serif;
+  --font-mono: ui-monospace, 'Cascadia Code', 'SF Mono', Consolas, monospace;
+  --text-xs: 0.8125rem;
+  --text-sm: 0.9375rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.375rem;
+  --text-2xl: 1.75rem;
+  --text-3xl: clamp(1.75rem, 3.5vw, 2.25rem);
+  --text-4xl: clamp(2.25rem, 5.5vw, 3.5rem);
+  --leading-tight: 1.2;
+  --leading-body: 1.65;
+
+  /* Spacing */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+
+  /* Shape and effects */
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 16px;
+  --shadow-sm: 0 1px 2px rgb(15 23 42 / 6%);
+  --shadow-md: 0 8px 24px rgb(15 23 42 / 8%);
+
+  /* Motion */
+  --transition: 180ms ease;
+  --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
+
+  /* Layout */
+  --container-width: 72rem;
+  --gutter: 1.25rem;
+  --header-height: 5.5rem; /* the floating bar plus the gap above it; used for scroll offset */
+}
