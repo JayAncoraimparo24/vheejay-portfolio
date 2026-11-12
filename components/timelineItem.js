@@ -1,10 +1,13 @@
 import { el } from '../js/dom.js';
-import { placeholderNote } from './section.js';
-/** One entry in the experience timeline. */
+
+/**
+ * One entry in the experience timeline.
+ * When a job has no responsibilities listed yet, nothing is shown there (no "to be announced" text).
+ */
 export function timelineItem(job) {
   const body = job.responsibilities.length
     ? el('ul', { class: 'bullet-list' }, job.responsibilities.map((text) => el('li', { text })))
-    : placeholderNote('Responsibilities: to be announced.');
+    : null;
 
   return el(
     'article',
