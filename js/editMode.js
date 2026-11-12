@@ -10,7 +10,7 @@ import { initLinkEditing } from './linkEdit.js';
  * data files never shows stale edits.
  */
 const EDITABLE_SELECTOR = 'h1, h2, h3, p, li, dt, dd, figcaption, strong, span';
-const EXCLUDED_SELECTOR = '.site-header, form, svg, .edit-toolbar, .skip-link, .hero__sleep, .marquee, .lightbox';
+const EXCLUDED_SELECTOR = '.site-header, form, svg, .edit-toolbar, .skip-link, .marquee, .lightbox';
 const EDITING_CLASS = 'is-editing-text';
 const HELP_TEXT =
   'Click text to type. Click an image to replace it. Click a contact row to change its link. Saved in this browser.';

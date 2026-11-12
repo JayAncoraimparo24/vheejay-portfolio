@@ -51,7 +51,7 @@ export const skillCategories = [
     id: 'back-end',
     title: 'Back-End Development',
     icon: 'database',
-    items: ['PHP', 'MySQL', 'Python'],
+    items: ['PHP', 'Python', 'MySQL', 'XAMPP'],
   },
   {
     id: 'tools',

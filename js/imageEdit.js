@@ -41,7 +41,7 @@ function builtInSrc(slot) {
 }
 
 function showImage(slot, dataUrl) {
-  slot.dataset.customImage = 'true'; // overlays made for the built-in photo (eyelids) hide
+  slot.dataset.customImage = 'true';
   slot.querySelector(':scope > .slot-image')?.remove();
   slot.append(el('img', { class: 'slot-image', src: dataUrl, alt: '' }));
 }

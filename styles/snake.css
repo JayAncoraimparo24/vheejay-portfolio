@@ -25,15 +25,25 @@
   animation: snake-travel 4s linear infinite;
 }
 
-/* Hover variant: hidden until the parent is hovered or focused */
+/* Hover variant: hidden until the parent is hovered or focused.
+   Its animation is also paused while hidden, so the page is not redrawing lines nobody can see. */
 .snake-border--hover {
   opacity: 0;
   transition: opacity var(--transition);
 }
 
+.snake-border--hover .snake-border__line {
+  animation-play-state: paused;
+}
+
 :hover > .snake-border--hover,
 :focus-within > .snake-border--hover {
   opacity: 1;
+}
+
+:hover > .snake-border--hover .snake-border__line,
+:focus-within > .snake-border--hover .snake-border__line {
+  animation-play-state: running;
 }
 
 /* Cyan buttons need a dark line to stay visible */

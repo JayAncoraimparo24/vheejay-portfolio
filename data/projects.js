@@ -16,7 +16,7 @@ export const projects = [
     role: 'Lead UI/UX Designer, Front-End Developer, Manual QA Tester, Technical Documentation',
     date: 'January 2025 – May 2026',
     overview:
-      'A capstone project that improves the operations of RBM Motorparts, Accessories, & Services in Caloocan City, which relied on manual and Microsoft Excel-based processes with risks in data transfer, security, backup, and unauthorized access. The web application streamlines sales transactions with barcode scanning and automatic receipts, tracks inventory, controls employee access, logs system activity, and generates reports for managers. It was developed by a five-member team following the Modified Waterfall Model, using PHP and MySQL.',
+      'A web-based sales and inventory system for RBM Motorparts, Accessories, & Services in Caloocan City, improving their manual and Excel-based processes. It handles barcode sales with automatic receipts, tracks inventory, controls employee access, logs system activity, and generates reports. Built by a five-member team using PHP and MySQL, following the Modified Waterfall Model.',
     tools: ['Figma', 'Canva', 'Adobe Photoshop', 'HTML', 'CSS', 'JavaScript', 'PHP', 'MySQL', 'XAMPP'],
     features: [
       'Login with user authentication.',

@@ -18,7 +18,7 @@
   --color-on-dark: #ffffff; /* text on always-dark areas */
   --color-deep: #0f172a; /* always-dark fills, and text on cyan */
   --shadow-hard: var(--color-deep); /* the offset "print" shadow used on the portrait, cards, and buttons */
-  --header-glass: rgb(255 255 255 / 86%);
+  --header-glass: rgb(255 255 255 / 96%); /* nearly solid: a blur behind the bar made scrolling heavy */
 
   /* Dot-grid texture */
   --dot-color: rgb(14 116 144 / 22%);
@@ -63,5 +63,5 @@
   /* Layout */
   --container-width: 72rem;
   --gutter: 1.25rem;
-  --header-height: 5.5rem; /* the floating bar plus the gap above it; used for scroll offset */
+  --header-height: 4.25rem;
 }

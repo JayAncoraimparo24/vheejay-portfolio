@@ -22,10 +22,12 @@ export function projectCard(project) {
       alt: `${project.title} screenshot`,
       label: 'Project screenshot', // the title is right below, so do not repeat it here
     }),
+    el('span', { class: 'project-card__badge', 'aria-hidden': 'true', text: String(project.number).padStart(2, '0') }),
     el(
       'div',
       { class: 'project-card__body' },
-      el('p', { class: 'eyebrow', text: `Project ${project.number}${project.type ? ` · ${project.type}` : ''}` }),
+      // The number is already shown in the badge on the picture, so the label only carries the type
+      project.type ? el('p', { class: 'eyebrow', text: project.type }) : null,
       el('h3', { class: 'card__title', text: project.title }),
       el('p', { class: 'project-card__overview', text: project.overview }),
       el('p', { class: 'project-card__role' }, el('strong', { text: 'Role: ' }), el('span', { text: project.role })),

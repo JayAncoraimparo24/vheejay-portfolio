@@ -16,7 +16,7 @@
   --color-primary-dark: #22d3ee;
 
   --shadow-hard: #0e7490;
-  --header-glass: rgb(11 19 38 / 86%);
+  --header-glass: rgb(11 19 38 / 96%);
   --dot-color: rgb(103 232 249 / 14%);
   --shadow-sm: 0 1px 2px rgb(0 0 0 / 40%);
   --shadow-md: 0 8px 24px rgb(0 0 0 / 45%);
@@ -25,9 +25,9 @@
 /* While the visitor switches theme (js/theme.js adds .theme-fade for half a second),
    colours glide instead of snapping. The eyelids keep their own slower timing. */
 .theme-fade,
-.theme-fade *:not(.hero__eyelid),
-.theme-fade *:not(.hero__eyelid)::before,
-.theme-fade *:not(.hero__eyelid)::after {
+.theme-fade *,
+.theme-fade *::before,
+.theme-fade *::after {
   transition:
     background-color 450ms ease,
     color 450ms ease,

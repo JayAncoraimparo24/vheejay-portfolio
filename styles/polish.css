@@ -1,0 +1,323 @@
+/* Polish layer: smoother motion and livelier icons. Loaded after the base styles so it refines them. */
+:root {
+  --transition: 260ms var(--ease-out);
+  --ease-spring: cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+/* Icons: a soft glowing tile that pops and tilts on hover */
+.card__icon,
+.contact__icon {
+  position: relative;
+  transition:
+    background var(--transition),
+    color var(--transition),
+    box-shadow var(--transition),
+    transform 420ms var(--ease-spring);
+}
+
+/* Cards (light background): a pale cyan tile */
+.card__icon {
+  background: linear-gradient(135deg, var(--color-cyan-50), rgb(6 182 212 / 18%));
+  box-shadow: inset 0 0 0 1px rgb(6 182 212 / 28%);
+}
+
+/* Contact (dark background): a dark glass tile, so the cyan icon stays clearly visible */
+.contact__icon {
+  background: rgb(255 255 255 / 6%);
+  box-shadow: inset 0 0 0 1px rgb(255 255 255 / 18%);
+}
+
+.card__icon svg,
+.contact__icon svg {
+  transition: transform 420ms var(--ease-spring);
+}
+
+.card:hover .card__icon,
+.contact__row:hover .contact__icon {
+  color: var(--color-deep);
+  background: linear-gradient(135deg, #67e8f9, var(--color-primary));
+  box-shadow: 0 6px 16px rgb(6 182 212 / 40%);
+  transform: translateY(-2px) rotate(-6deg) scale(1.08);
+}
+
+.card:hover .card__icon svg,
+.contact__row:hover .contact__icon svg {
+  transform: scale(1.1) rotate(6deg);
+}
+
+/* Buttons: a light sweep across the button, and the icon nudges */
+.btn {
+  position: relative;
+  overflow: hidden;
+  isolation: isolate;
+}
+
+.btn::before {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  content: '';
+  background: linear-gradient(110deg, transparent 30%, rgb(255 255 255 / 45%) 50%, transparent 70%);
+  transform: translateX(-120%);
+  transition: transform 700ms var(--ease-out);
+}
+
+.btn:hover::before {
+  transform: translateX(120%);
+}
+
+.btn svg {
+  transition: transform 320ms var(--ease-spring);
+}
+
+/* Reveal: fades up and settles in. It is an animation (not a transition), so the hover
+   lift on cards and pictures keeps its own quick timing once the reveal is over. */
+.reveal.is-visible {
+  animation: reveal-in 480ms var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes reveal-in {
+  from {
+    opacity: 0;
+    transform: translateY(14px) scale(0.99);
+  }
+}
+
+/* Pressing a button or tab gives a small "push" */
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+.site-footer__top:active,
+.link-back:active,
+.jump-links__link:active {
+  transform: scale(0.96);
+}
+
+.jump-links__link {
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform 300ms var(--ease-spring);
+}
+
+.jump-links__link:hover {
+  transform: translateY(-2px);
+}
+
+/* Tabs: the open tab's colour slides in, and panels fade and rise */
+.tabs__tab {
+  transition:
+    background-color 300ms var(--ease-out),
+    border-color 300ms var(--ease-out),
+    box-shadow 300ms var(--ease-out),
+    transform 300ms var(--ease-spring);
+}
+
+.tabs__tab:active {
+  transform: scale(0.95);
+}
+
+.tabs__panel {
+  animation: panel-in 300ms var(--ease-out) backwards;
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+}
+
+/* Performance: the very tall gallery section keeps still dots (a huge moving layer is costly) */
+#work-gallery::before {
+  animation: none;
+}
+
+/* Performance: pictures fade in with opacity and a tiny scale (smooth, runs on the GPU)
+   instead of the old clip-path reveal, which redraws a big image on every frame */
+.media.is-visible .media__img {
+  animation: picture-fade 420ms var(--ease-out) backwards;
+  animation-delay: var(--reveal-delay, 0ms);
+}
+
+@keyframes picture-fade {
+  from {
+    opacity: 0;
+    transform: scale(1.04);
+  }
+}
+
+/* Gallery pictures zoom gently, and the caption follows */
+.media__img {
+  transition: transform 700ms var(--ease-out);
+}
+
+.media:hover .media__img {
+  transform: scale(1.05);
+}
+
+/* Navbar links: an underline that grows from the centre */
+.site-header a:not(.btn) {
+  transition:
+    color var(--transition),
+    background-color var(--transition),
+    border-color var(--transition);
+}
+
+/* ---------- Project cards ---------- */
+.project-card {
+  position: relative;
+}
+
+/* Number badge over the screenshot */
+.project-card__badge {
+  position: absolute;
+  top: var(--space-3);
+  left: var(--space-3);
+  z-index: 3;
+  display: grid;
+  place-items: center;
+  min-width: 2.25rem;
+  height: 2.25rem;
+  padding-inline: 0.5rem;
+  font-family: var(--font-mono);
+  font-size: var(--text-xs);
+  font-weight: 700;
+  color: var(--color-deep);
+  pointer-events: none;
+  background: var(--color-primary);
+  border: 2px solid var(--color-deep);
+  border-radius: var(--radius-sm);
+  box-shadow: 2px 2px 0 var(--color-deep);
+  transition: transform 420ms var(--ease-spring);
+}
+
+.project-card:hover .project-card__badge {
+  transform: rotate(-6deg) scale(1.08);
+}
+
+/* Compact cards: tighter text and a shorter picture */
+.project-card .media__box {
+  --media-ratio: 2 / 1;
+}
+
+.project-card__body {
+  gap: var(--space-2);
+  padding: var(--space-4);
+}
+
+.project-card__body .card__title {
+  font-size: var(--text-base);
+}
+
+.project-card__overview,
+.project-card__role {
+  font-size: var(--text-xs);
+}
+
+/* The screenshot fades into the text below it (only when there is a picture, not on the placeholder) */
+.project-card .media__box:has(.media__img)::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 38%;
+  content: '';
+  pointer-events: none;
+  background: linear-gradient(to top, rgb(15 23 42 / 22%), transparent);
+}
+
+.tag--more {
+  color: var(--color-primary-dark);
+  background: transparent;
+  border-style: dashed;
+  border-color: var(--color-primary);
+}
+
+.project-card .link-arrow {
+  padding-top: var(--space-3);
+  color: var(--color-primary-dark);
+  border-top: 1px solid var(--color-border);
+}
+
+.project-card:hover .link-arrow svg {
+  transform: translateX(5px);
+}
+
+/* ---------- Project page ---------- */
+.project-header {
+  padding: var(--space-6);
+  background: linear-gradient(135deg, var(--color-cyan-50), transparent 70%);
+  border: 1px solid var(--color-border);
+  border-left: 4px solid var(--color-primary);
+  border-radius: var(--radius-md);
+}
+
+.meta {
+  padding-top: var(--space-4);
+  border-top: 1px dashed var(--color-border);
+  width: 100%;
+}
+
+.detail-block__title {
+  display: flex;
+  gap: var(--space-3);
+  align-items: center;
+}
+
+.detail-block__title::before {
+  width: 0.35rem;
+  height: 1.4em;
+  content: '';
+  background: var(--color-primary);
+  border-radius: 999px;
+}
+
+.achievement {
+  background: linear-gradient(90deg, var(--color-cyan-50), transparent);
+  box-shadow: var(--shadow-sm);
+}
+
+.achievement svg {
+  flex-shrink: 0;
+  color: var(--color-primary-dark);
+}
+
+.pager__link {
+  padding: var(--space-4) var(--space-5);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color var(--transition),
+    box-shadow var(--transition),
+    transform var(--transition);
+}
+
+.pager__link:hover {
+  border-color: var(--color-primary);
+  box-shadow: 4px 4px 0 var(--shadow-hard);
+  transform: translate(-2px, -2px);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .reveal.is-visible {
+    animation: none;
+  }
+
+  .btn::before {
+    display: none;
+  }
+
+  .tabs__panel {
+    animation: none;
+  }
+}

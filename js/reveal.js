@@ -1,7 +1,7 @@
 const REVEAL_SELECTOR = '.section__header, .card, .media, .timeline__item, .contact__row, .form, .detail-block';
 const VISIBLE_CLASS = 'is-visible';
-const STAGGER_MS = 90;
-const MAX_STAGGER_STEPS = 5;
+const STAGGER_MS = 45; // short, so a grid of cards does not feel like it is waiting
+const MAX_STAGGER_STEPS = 3;
 
 /** Gives siblings that reveal together a small stagger, so grids cascade instead of popping in. */
 function assignDelays(targets) {
@@ -29,13 +29,50 @@ export function initReveal(root = document) {
         observer.unobserve(entry.target);
       }
     },
-    { threshold: 0.1 },
+    // Start a little BEFORE the element reaches the screen, so it is already in when you get there
+    { threshold: 0, rootMargin: '0px 0px 12% 0px' },
   );
 
   targets.forEach((target) => {
     target.classList.add('reveal');
     observer.observe(target);
   });
+
+  // Safety net: if the observer is slow or does not fire (hidden tab, odd browser), content must
+  // still appear. Check positions directly on load, on scroll, and on resize.
+  const revealVisible = () => {
+    targets.forEach((target) => {
+      if (target.classList.contains(VISIBLE_CLASS)) return;
+      const { top, bottom } = target.getBoundingClientRect();
+      if (bottom > 0 && top < window.innerHeight * 1.1) {
+        target.classList.add(VISIBLE_CLASS);
+        observer.unobserve(target);
+      }
+    });
+  };
+  let queued = false;
+  const queueCheck = () => {
+    if (queued) return;
+    queued = true;
+    // setTimeout (not requestAnimationFrame) so it also runs in a tab that is not being painted
+    setTimeout(() => {
+      queued = false;
+      revealVisible();
+    }, 60);
+  };
+  window.addEventListener('scroll', queueCheck, { passive: true });
+  window.addEventListener('resize', queueCheck);
+  window.addEventListener('hashchange', queueCheck);
+  setTimeout(revealVisible, 400);
+  setTimeout(revealVisible, 1500);
+  // Last resort: after a few seconds show everything, so nothing can stay hidden.
+  // Then the safety net stops listening, so scrolling does no extra work.
+  setTimeout(() => {
+    targets.forEach((target) => target.classList.add(VISIBLE_CLASS));
+    window.removeEventListener('scroll', queueCheck);
+    window.removeEventListener('resize', queueCheck);
+    window.removeEventListener('hashchange', queueCheck);
+  }, 6000);
 
   // The experience timeline's vertical line draws itself when it comes into view.
   const drawObserver = new IntersectionObserver(

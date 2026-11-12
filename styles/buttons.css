@@ -100,6 +100,32 @@
   font-weight: 600;
 }
 
+.link-back {
+  width: fit-content;
+  padding: 0.4rem 0.9rem 0.4rem 0.6rem;
+  color: var(--color-primary-dark);
+  border: 1.5px solid var(--color-border);
+  border-radius: 999px;
+  transition:
+    background-color var(--transition),
+    border-color var(--transition),
+    transform var(--transition);
+}
+
+.link-back:hover {
+  background: var(--color-cyan-50);
+  border-color: var(--color-primary);
+  transform: translateX(-3px);
+}
+
+.link-back svg {
+  transition: transform var(--transition);
+}
+
+.link-back:hover svg {
+  transform: translateX(-4px);
+}
+
 .link-arrow svg {
   transition: transform var(--transition);
 }

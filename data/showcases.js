@@ -15,8 +15,18 @@ export const figmaLinks = [
     url: 'https://www.figma.com/design/rlpwnRL2JdkJ2pwwNyiK6u',
   },
   {
-    label: 'View MHIPCOR 2027 Calendar in Figma',
-    url: 'https://www.figma.com/design/mdC5x6YniUIkYJZEvnhhtg/MHIPCOR-2027-Calendar?node-id=0-1',
+    label: 'View the MHIPCOR 2027 Calendar in Figma',
+    url: 'https://www.figma.com/design/mdC5x6YniUIkYJZEvnhhtg/MHIPCOR-2027-Calendar?node-id=0-1&p=f',
+  },
+];
+
+// Figma links shown as buttons above the Graphic Design gallery (print work).
+// To bring the Mug Wraps button back, add this entry:
+//   { label: 'View the Mug Wraps in Figma', url: 'https://www.figma.com/design/qbQdtQJVK7wWPJBZ7Qjevn/Untitled?node-id=1-1118' }
+export const graphicFigmaLinks = [
+  {
+    label: 'View the Company Uniform & Merch Design in Figma',
+    url: 'https://www.figma.com/design/gZo7pe6sMBaP0vQLP98mbs/Untitled?node-id=0-1&p=f',
   },
 ];
 
@@ -45,9 +55,6 @@ export const uiuxShowcase = [
 // Graphic design works. `ratio` is each picture's width / height, so nothing is cropped.
 export const graphicDesignShowcase = [
   { title: 'Profile banner', src: 'assets/images/graphics/profile-banner.jpg', ratio: '1400 / 467' },
-  { title: 'Open to work banner', src: 'assets/images/graphics/open-to-work-banner.webp', ratio: '2000 / 667' },
-  { title: 'Happy Birthday Coach Jeboy', src: 'assets/images/graphics/birthday-coach-jeboy.webp', ratio: '1086 / 1448' },
-  { title: 'Vector portrait', src: 'assets/images/graphics/vector-portrait.webp', ratio: '991 / 1587' },
   { title: 'Business card', src: 'assets/images/graphics/business-card.jpg', ratio: '1224 / 864' },
   { title: 'Matcha Berry poster', src: 'assets/images/graphics/matcha-berry-poster.jpg', ratio: '933 / 1400' },
   { title: 'T-bone steak ad', src: 'assets/images/graphics/tbone-steak-ad.jpg', ratio: '1400 / 904' },
@@ -60,6 +67,13 @@ export const graphicDesignShowcase = [
   { title: 'System Admin and Maintenance cover', src: 'assets/images/graphics/system-admin-cover.jpg', ratio: '933 / 1400' },
   { title: 'Line-art portrait 1', src: 'assets/images/graphics/line-art-portrait-1-clean.jpg', ratio: '928 / 1152' },
   { title: 'Line-art portrait 2', src: 'assets/images/graphics/line-art-portrait-2-clean.jpg', ratio: '928 / 1152' },
+  { title: 'Open to work banner', src: 'assets/images/graphics/open-to-work-banner.webp', ratio: '2000 / 667' },
+  { title: 'Birthday cartoon portrait', src: 'assets/images/graphics/birthday-cartoon.webp', ratio: '1086 / 1448' },
+  { title: 'Varsity jacket portrait', src: 'assets/images/graphics/varsity-portrait.webp', ratio: '991 / 1587' },
+  { title: 'Cry for Justice poster', src: 'assets/images/graphics/cry-for-justice-poster.jpg', ratio: '1414 / 2000' },
+  { title: 'Mug Wrap: GECAR Machine Solutions', src: 'assets/images/graphics/mug-wrap-gecar.jpg', ratio: '2000 / 1535' },
+  { title: 'Mug Wrap: MHIPCOR', src: 'assets/images/graphics/mug-wrap-mhipcor.jpg', ratio: '2000 / 1535' },
+  { title: 'Mug Wrap: Genesis Hydraulics', src: 'assets/images/graphics/mug-wrap-genesis.jpg', ratio: '2000 / 1535' },
 ];
 
 // Photos taken by Vheejay. Add more entries here.

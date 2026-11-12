@@ -16,6 +16,7 @@
 @import url('lightbox.css');
 @import url('marquee.css');
 @import url('snake.css');
+@import url('tabs.css');
 
 /* Page sections */
 @import url('hero.css');
@@ -24,5 +25,7 @@
 @import url('project-page.css');
 
 /* Special cases */
+@import url('polish.css');
+@import url('glass.css');
 @import url('edit-mode.css');
 @import url('theme-dark.css');

@@ -70,7 +70,7 @@ export function createNavbar({ isHome }) {
         'div',
         { class: 'nav__actions' },
         createThemeToggle(),
-        el('a', { class: 'nav__cta', href: linkHref('contact', isHome), text: 'Hire Me' }),
+        el('a', { class: 'nav__hire', href: linkHref('contact', isHome), text: 'Hire Me' }),
         toggle,
       ),
     ),

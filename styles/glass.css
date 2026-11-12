@@ -1,0 +1,206 @@
+/*
+ * Glass look (frosted, translucent surfaces with soft light edges), in the style of modern phone UIs.
+ * Kept in its own file: remove the @import of glass.css in main.css to go back to the earlier look.
+ *
+ * Performance rule: real blur (backdrop-filter) is used only on two surfaces, the navbar and the
+ * contact form. Everything else gets the glass look from translucency, a light edge and soft colour
+ * behind it, which costs almost nothing.
+ */
+:root {
+  --glass-bg: rgb(255 255 255 / 58%);
+  --glass-bg-strong: rgb(255 255 255 / 76%);
+  --glass-edge: rgb(255 255 255 / 85%); /* the bright rim of the glass */
+  --glass-line: rgb(14 116 144 / 14%); /* the faint outer line */
+  --glass-nav: rgb(255 255 255 / 90%);
+  --glass-shadow: 0 6px 16px rgb(14 116 144 / 9%), inset 0 1px 0 rgb(255 255 255 / 90%);
+  --glass-shadow-hover: 0 12px 28px rgb(6 182 212 / 22%), inset 0 1px 0 rgb(255 255 255 / 95%);
+  --glass-glow: rgb(6 182 212 / 40%);
+
+  /* Soft colour behind the glass, so the translucency has something to show */
+  --blob-a: rgb(6 182 212 / 22%);
+  --blob-b: rgb(99 102 241 / 13%);
+  --blob-c: rgb(45 212 191 / 16%);
+}
+
+:root[data-theme='dark'] {
+  --glass-bg: rgb(26 40 70 / 52%);
+  --glass-bg-strong: rgb(26 40 70 / 72%);
+  --glass-edge: rgb(255 255 255 / 16%);
+  --glass-line: rgb(255 255 255 / 8%);
+  --glass-nav: rgb(16 27 52 / 90%);
+  --glass-shadow: 0 6px 16px rgb(0 0 0 / 32%), inset 0 1px 0 rgb(255 255 255 / 12%);
+  --glass-shadow-hover: 0 12px 28px rgb(6 182 212 / 20%), inset 0 1px 0 rgb(255 255 255 / 18%);
+  --glass-glow: rgb(34 211 238 / 35%);
+
+  --blob-a: rgb(34 211 238 / 13%);
+  --blob-b: rgb(99 102 241 / 16%);
+  --blob-c: rgb(45 212 191 / 9%);
+}
+
+/* ---------- Performance: pause decorative loops while the page is scrolling ----------
+   js/scrollState.js sets .is-scrolling on <html>. The animations resume where they stopped. */
+.is-scrolling .hero::before,
+.is-scrolling .section--tint::before,
+.is-scrolling .section--dark::before,
+.is-scrolling .snake-border__line,
+.is-scrolling .marquee__track,
+.is-scrolling .timeline__item::before,
+.is-scrolling .hero__title,
+.is-scrolling .flip-card,
+.is-scrolling .scroll-cue {
+  animation-play-state: paused !important;
+}
+
+/* The dot grid only drifts in the hero; the other sections (some very tall) keep still dots */
+.section--tint::before,
+.section--dark::before {
+  animation: none;
+}
+
+/* ---------- Colour behind the glass ---------- */
+.hero,
+.section--tint {
+  background-image:
+    radial-gradient(34rem 24rem at 8% 6%, var(--blob-a), transparent 65%),
+    radial-gradient(30rem 22rem at 94% 14%, var(--blob-b), transparent 65%),
+    radial-gradient(32rem 22rem at 55% 100%, var(--blob-c), transparent 65%);
+  background-repeat: no-repeat;
+}
+
+/* ---------- Cards ---------- */
+.card,
+.timeline__item {
+  background: var(--glass-bg);
+  border: 1px solid var(--glass-edge);
+  box-shadow: var(--glass-shadow), 0 0 0 1px var(--glass-line);
+}
+
+.card:hover,
+.timeline__item:hover {
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-edge);
+  box-shadow: var(--glass-shadow-hover), 0 0 0 1px rgb(6 182 212 / 40%);
+  transform: translateY(-4px);
+}
+
+/* The coloured top edge of skill and project cards stays, now as a soft rim */
+.skill-card,
+.project-card {
+  border-top: 3px solid var(--color-primary);
+}
+
+/* Tags and chips: small frosted pills */
+.tag {
+  background: rgb(6 182 212 / 9%);
+  border-color: rgb(6 182 212 / 30%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 50%);
+}
+
+.tag--more {
+  background: transparent;
+  border-color: var(--color-primary);
+}
+
+/* ---------- Navbar ----------
+   No live blur here: the bar always sits over moving content, and re-blurring it on every
+   scroll frame made the page feel heavy. A mostly-solid frosted surface looks almost the same. */
+.nav {
+  background: var(--glass-nav);
+  border-color: var(--glass-edge);
+  box-shadow: var(--glass-shadow), 0 0 0 1px var(--glass-line);
+}
+
+/* ---------- Buttons ---------- */
+.btn--primary {
+  background: linear-gradient(135deg, #22d3ee, var(--color-primary) 60%, #0891b2);
+  box-shadow: 0 6px 18px rgb(6 182 212 / 30%), inset 0 1px 0 rgb(255 255 255 / 45%);
+}
+
+.btn--primary:hover {
+  background: linear-gradient(135deg, #67e8f9, #22d3ee 60%, var(--color-primary));
+  box-shadow: 0 12px 28px var(--glass-glow), inset 0 1px 0 rgb(255 255 255 / 55%);
+  transform: translateY(-2px);
+}
+
+.btn--secondary {
+  color: var(--color-navy);
+  background: var(--glass-bg);
+  border-color: var(--glass-edge);
+  box-shadow: var(--glass-shadow), 0 0 0 1px var(--glass-line);
+}
+
+.btn--secondary:hover {
+  color: var(--color-navy);
+  background: var(--glass-bg-strong);
+  box-shadow: var(--glass-shadow-hover), 0 0 0 1px rgb(6 182 212 / 40%);
+  transform: translateY(-2px);
+}
+
+.btn:active {
+  transform: scale(0.97);
+  box-shadow: none;
+}
+
+/* ---------- Tabs, chips, small links ---------- */
+.tabs__tab,
+.jump-links__link,
+.link-back,
+.pager__link {
+  background: var(--glass-bg);
+  border-color: var(--glass-edge);
+  box-shadow: var(--glass-shadow), 0 0 0 1px var(--glass-line);
+}
+
+.tabs__tab:hover,
+.jump-links__link:hover,
+.link-back:hover,
+.pager__link:hover {
+  background: var(--glass-bg-strong);
+  border-color: var(--glass-edge);
+  box-shadow: var(--glass-shadow-hover), 0 0 0 1px rgb(6 182 212 / 40%);
+}
+
+.tabs__tab[aria-selected='true'] {
+  color: var(--color-deep);
+  background: linear-gradient(135deg, #67e8f9, var(--color-primary));
+  border-color: rgb(255 255 255 / 55%);
+  box-shadow: 0 10px 24px var(--glass-glow), inset 0 1px 0 rgb(255 255 255 / 60%);
+}
+
+/* ---------- Contact (dark section) ---------- */
+.contact__icon {
+  background: rgb(255 255 255 / 8%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 16%), 0 0 0 1px rgb(255 255 255 / 16%);
+}
+
+.form {
+  background: rgb(255 255 255 / 7%);
+  border-color: rgb(255 255 255 / 18%);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 12px 28px rgb(0 0 0 / 28%), inset 0 1px 0 rgb(255 255 255 / 18%);
+}
+
+.field input,
+.field textarea {
+  color: #fff;
+  background: rgb(255 255 255 / 9%);
+  border-color: rgb(255 255 255 / 20%);
+  box-shadow: inset 0 1px 2px rgb(0 0 0 / 25%);
+}
+
+.field input::placeholder,
+.field textarea::placeholder {
+  color: rgb(203 213 225 / 70%);
+}
+
+.field input:focus,
+.field textarea:focus {
+  background: rgb(255 255 255 / 13%);
+  border-color: var(--color-primary);
+}
+
+/* Footer button */
+.site-footer__top {
+  background: rgb(255 255 255 / 6%);
+  box-shadow: inset 0 1px 0 rgb(255 255 255 / 14%);
+}

@@ -20,7 +20,7 @@ export function mediaFrame({ src, alt, label, caption, ratio = '16 / 10', openFu
   const box = el('div', { class: 'media__box' });
 
   if (src) {
-    const image = el('img', { class: 'media__img', src: siteUrl(src), alt, loading: 'lazy' });
+    const image = el('img', { class: 'media__img', src: siteUrl(src), alt, loading: 'lazy', decoding: 'async' });
     image.addEventListener('error', () => box.replaceChildren(placeholder));
     // With openFull, clicking the picture opens it at full size in a new tab.
     box.append(

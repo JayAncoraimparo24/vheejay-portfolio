@@ -100,55 +100,13 @@
 
 /* Project screenshots: show the whole screen instead of cropping it */
 .grid--shots {
-  grid-template-columns: repeat(auto-fill, minmax(min(100%, 22rem), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr));
   align-items: start;
 }
 
 .grid--shots .media__img {
   object-fit: contain;
   background: var(--color-white);
-}
-
-/* Gallery tabs: one tab per kind of work, one panel shown at a time */
-.gallery-tabs {
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2);
-  margin-bottom: var(--space-5);
-}
-
-.gallery-tabs__tab {
-  padding: 0.6rem 1.25rem;
-  font-size: var(--text-sm);
-  font-weight: 600;
-  color: var(--color-text);
-  cursor: pointer;
-  background: transparent;
-  border: 1.5px solid var(--color-border);
-  border-radius: 999px;
-  transition:
-    background-color var(--transition),
-    border-color var(--transition),
-    color var(--transition);
-}
-
-.gallery-tabs__tab:hover {
-  background: var(--color-cyan-50);
-  border-color: var(--color-primary);
-}
-
-.gallery-tabs__tab[aria-selected='true'] {
-  color: var(--color-deep);
-  background: var(--color-primary);
-  border-color: var(--color-primary);
-}
-
-.gallery-panel[hidden] {
-  display: none;
-}
-
-.gallery-panel__intro {
-  margin-bottom: var(--space-5);
 }
 
 /* Photography, graphic design, and IT support: masonry columns so tall, square, and wide pictures

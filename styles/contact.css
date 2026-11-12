@@ -136,8 +136,23 @@
   text-align: center;
 }
 
+/* A bigger, clearer button-like target so it is easy to click or tap */
 .site-footer__top {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
   color: var(--color-primary);
+  border: 1.5px solid rgb(6 182 212 / 45%);
+  border-radius: 999px;
+  transition:
+    background-color var(--transition),
+    color var(--transition),
+    transform var(--transition);
+}
+
+.site-footer__top:hover {
+  color: var(--color-deep);
+  background: var(--color-primary);
+  transform: translateY(-2px);
 }
 
 /* While editing on your own computer the floating toolbar sits over the footer, so leave room for it */
