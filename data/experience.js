@@ -1,6 +1,6 @@
 export const experience = [
   {
-    company: 'MHICORP',
+    company: 'MHIPCOR',
     location: 'Quezon City, Philippines',
     position: 'Junior IT Specialist',
     period: 'October 23, 2026 – Present',
