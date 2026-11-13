@@ -6,6 +6,29 @@ import { tagList } from './tag.js';
 import { withSnakeBorder } from './snakeBorder.js';
 
 const MAX_CARD_TOOLS = 3; // the project page lists every tool
+const MAX_CARD_ROLES = 2; // the project page shows the full role
+
+/**
+ * The role line as small chips ("Role" label + up to two roles + "+N more").
+ * A role is split at the commas in data/projects.js, so a role is never cut in the middle of a word.
+ */
+function roleChips(role) {
+  const parts = role.split(',').map((part) => part.trim()).filter(Boolean);
+  const shown = parts.slice(0, MAX_CARD_ROLES);
+  const hidden = parts.length - shown.length;
+  const labels = hidden > 0 ? [...shown, `+${hidden} more`] : shown;
+
+  return el(
+    'div',
+    { class: 'project-card__roles', title: role },
+    el('span', { class: 'project-card__roles-label', text: 'Role' }),
+    el(
+      'ul',
+      { class: 'role-list' },
+      labels.map((text) => el('li', { class: /^\+\d+ more$/.test(text) ? 'role role--more' : 'role', text })),
+    ),
+  );
+}
 
 export function projectCard(project) {
   const cover = project.screenshots[0];
@@ -30,7 +53,7 @@ export function projectCard(project) {
       project.type ? el('p', { class: 'eyebrow', text: project.type }) : null,
       el('h3', { class: 'card__title', text: project.title }),
       el('p', { class: 'project-card__overview', text: project.overview }),
-      el('p', { class: 'project-card__role' }, el('strong', { text: 'Role: ' }), el('span', { text: project.role })),
+      roleChips(project.role),
       tools,
       el(
         'a',
