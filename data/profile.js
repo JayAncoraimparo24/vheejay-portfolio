@@ -20,8 +20,8 @@ export const profile = {
   phone: '0919-764-3393',
   phoneHref: '+639197643393',
   linkedin: {
-    label: 'VheejayDelacruzSugay',
-    url: 'https://www.linkedin.com/in/VheejayDelacruzSugay',
+    label: 'Vheejay Sugay',
+    url: 'https://www.linkedin.com/in/vheejay-sugay-ab219a398/',
   },
   // Add the real GitHub profile URL here when available. Leave null to show a placeholder.
   github: { label: 'JayAncoraimparo24', url: 'https://github.com/JayAncoraimparo24' },
