@@ -217,8 +217,7 @@ html {
   font-size: var(--text-base);
 }
 
-.project-card__overview,
-.project-card__role {
+.project-card__overview {
   font-size: var(--text-xs);
 }
 

@@ -89,8 +89,7 @@
 }
 
 .project-card__body .card__title,
-.project-card__overview,
-.project-card__role {
+.project-card__overview {
   display: -webkit-box;
   overflow: hidden;
   -webkit-box-orient: vertical;
@@ -107,12 +106,6 @@
   color: var(--color-muted);
   -webkit-line-clamp: 3;
   line-clamp: 3;
-}
-
-.project-card__role {
-  font-size: var(--text-sm);
-  -webkit-line-clamp: 2;
-  line-clamp: 2;
 }
 
 .project-card .link-arrow {
