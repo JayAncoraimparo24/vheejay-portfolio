@@ -119,6 +119,34 @@
   color: var(--color-primary);
 }
 
+/* The ways to send the message, shown after the form is filled in */
+.form__result {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.form__result[hidden] {
+  display: none;
+}
+
+.form__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.form__copied {
+  min-height: 1.25em;
+  font-size: var(--text-sm);
+  color: var(--color-primary);
+}
+
+.form__hint {
+  font-size: var(--text-xs);
+  color: var(--color-muted-on-dark);
+  overflow-wrap: anywhere;
+}
+
 /* Footer */
 .site-footer {
   padding-block: var(--space-5);
