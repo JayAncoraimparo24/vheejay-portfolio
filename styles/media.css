@@ -113,7 +113,7 @@
    sit together without cropping (each picture sets its own ratio from data/showcases.js) */
 .photo-masonry {
   column-gap: var(--space-5);
-  column-width: 16rem;
+  column-width: 14rem; /* 4 columns on a wide screen (about 250px each), 3 on a laptop, 1-2 on a phone */
 }
 
 .photo-masonry .media {
