@@ -208,6 +208,49 @@
   border-color: var(--color-primary);
 }
 
+/* ---------- Shapes: large things are softly rounded, small controls are pills or circles ----------
+   (To go back to the earlier, less rounded look, delete this block.) */
+.card,
+.timeline__item {
+  border-radius: 18px;
+}
+
+.media__box {
+  border-radius: 14px;
+}
+
+.nav {
+  border-radius: 22px;
+}
+
+.form {
+  border-radius: 22px;
+}
+
+.btn {
+  border-radius: 999px;
+}
+
+.field input,
+.field textarea {
+  border-radius: 12px;
+}
+
+.card__icon,
+.contact__icon {
+  border-radius: 12px;
+}
+
+/* The number on a project picture is a soft circle (it was a hard-edged square) */
+.project-card__badge {
+  min-width: 0;
+  width: 2.25rem;
+  padding: 0;
+  border: 2px solid rgb(255 255 255 / 85%);
+  border-radius: 50%;
+  box-shadow: 0 4px 12px rgb(6 182 212 / 40%);
+}
+
 /* Footer button */
 .site-footer__top {
   background: rgb(255 255 255 / 6%);

@@ -14,5 +14,5 @@ export function button({ label, href, type = 'button', variant = 'primary', icon
   if (href && external) Object.assign(props, { target: '_blank', rel: 'noopener noreferrer' });
   if (onClick) props.on = { click: onClick };
   const node = el(tag, props, label, iconName ? icon(iconName, 18) : null);
-  return variant === 'primary' ? withSnakeBorder(node, { radius: 6 }) : node;
+  return variant === 'primary' ? withSnakeBorder(node, { radius: 24 }) : node;
 }

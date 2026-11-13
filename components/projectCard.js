@@ -37,7 +37,7 @@ export function projectCard(project) {
   const shownTools = hidden > 0 ? [...project.tools.slice(0, MAX_CARD_TOOLS), `+${hidden} more`] : project.tools;
   const tools = shownTools.length ? tagList(shownTools) : null;
 
-  return withSnakeBorder(el(
+  const card = el(
     'article',
     { class: 'card project-card' },
     mediaFrame({
@@ -63,5 +63,8 @@ export function projectCard(project) {
         icon('arrow', 18),
       ),
     ),
-  ));
+  );
+
+  // The moving line around the card follows the card's rounded corners (18px)
+  return withSnakeBorder(card, { radius: 18 });
 }
