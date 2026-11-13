@@ -392,6 +392,13 @@
   opacity: 1;
 }
 
+/* The little mouse icon is small, so its clickable area is made larger (easier to tap) */
+.scroll-cue::before {
+  position: absolute;
+  inset: -0.75rem;
+  content: '';
+}
+
 .scroll-cue::after {
   position: absolute;
   top: 0.4rem;
