@@ -3,19 +3,19 @@
 
 // UI/UX and Figma work. `ratio` is each picture's width / height, so nothing is cropped.
 // Frames of the GECAR Calendar 2027 souvenir, exported from the Figma file linked below.
-// Links shown as buttons under the UI/UX gallery. Make sure each Figma file is set to
+// Links shown as small chips (under a "Figma files" label) above the UI/UX gallery. Make sure each Figma file is set to
 // "Anyone with the link can view", otherwise visitors cannot open it.
 export const figmaLinks = [
   {
-    label: 'View the GECAR Calendar in Figma',
+    label: 'GECAR Calendar 2027',
     url: 'https://www.figma.com/design/InAAuf2NZPtaxlxlmFPmqG/GECAR-Calendar-2027--Souvenir-Design-By--Vheejay-Sugay',
   },
   {
-    label: 'View Genesis in Figma',
+    label: 'Genesis',
     url: 'https://www.figma.com/design/rlpwnRL2JdkJ2pwwNyiK6u',
   },
   {
-    label: 'View the MHIPCOR 2027 Calendar in Figma',
+    label: 'MHIPCOR Calendar 2027',
     url: 'https://www.figma.com/design/mdC5x6YniUIkYJZEvnhhtg/MHIPCOR-2027-Calendar?node-id=0-1&p=f',
   },
 ];
@@ -25,7 +25,7 @@ export const figmaLinks = [
 //   { label: 'View the Mug Wraps in Figma', url: 'https://www.figma.com/design/qbQdtQJVK7wWPJBZ7Qjevn/Untitled?node-id=1-1118' }
 export const graphicFigmaLinks = [
   {
-    label: 'View the Company Uniform & Merch Design in Figma',
+    label: 'Company Uniform & Merch Design',
     url: 'https://www.figma.com/design/gZo7pe6sMBaP0vQLP98mbs/Untitled?node-id=0-1&p=f',
   },
 ];
