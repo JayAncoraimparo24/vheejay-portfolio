@@ -9,7 +9,9 @@ import { siteUrl } from '../js/config.js';
 /** Round icon buttons under the location: email, LinkedIn, GitHub (each only when it is set in data/profile.js). */
 function createQuickLinks() {
   const links = [
-    profile.email && { name: 'mail', label: 'Email me', href: `mailto:${profile.email}` },
+    // The email icon takes the visitor to the contact form, which offers Gmail, an email app, or copying the message
+    // (a plain mailto: link does nothing on a computer without an email app)
+    profile.email && { name: 'mail', label: 'Send me a message', href: '#contact' },
     profile.linkedin?.url && { name: 'linkedin', label: 'LinkedIn profile', href: profile.linkedin.url, external: true },
     profile.github?.url && { name: 'github', label: 'GitHub profile', href: profile.github.url, external: true },
   ].filter(Boolean);
