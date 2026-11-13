@@ -76,6 +76,61 @@
   background-repeat: no-repeat;
 }
 
+/* ---------- Background polish (all still, so it costs nothing while scrolling) ---------- */
+
+/* 1) A soft glow behind the portrait makes the picture the centre of the hero */
+:root {
+  --orb-a: rgb(34 211 238 / 38%);
+  --orb-b: rgb(99 102 241 / 20%);
+}
+
+:root[data-theme='dark'] {
+  --orb-a: rgb(34 211 238 / 22%);
+  --orb-b: rgb(99 102 241 / 24%);
+}
+
+.hero__inner {
+  position: relative;
+}
+
+.hero__inner::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  z-index: -1;
+  width: min(34rem, 120%);
+  aspect-ratio: 1;
+  content: '';
+  pointer-events: none;
+  background: radial-gradient(circle, var(--orb-a), var(--orb-b) 42%, transparent 70%);
+  transform: translate(-50%, -50%);
+}
+
+/* On a wide screen the glow sits behind the portrait (the right column) */
+@media (min-width: 56rem) {
+  .hero__inner::after {
+    left: 77%;
+  }
+}
+
+/* 2) The dots fade out towards the top and bottom edge of each section, so they stop looking like flat wallpaper */
+.hero::before,
+.section--tint::before,
+.section--dark::before {
+  -webkit-mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+  mask-image: linear-gradient(to bottom, transparent 0, #000 12%, #000 88%, transparent 100%);
+}
+
+/* 3) The tinted sections melt into the plain sections around them instead of ending with a hard line */
+.section--tint {
+  background-image:
+    linear-gradient(to bottom, var(--color-white), transparent 7rem),
+    linear-gradient(to top, var(--color-white), transparent 7rem),
+    radial-gradient(34rem 24rem at 8% 6%, var(--blob-a), transparent 65%),
+    radial-gradient(30rem 22rem at 94% 14%, var(--blob-b), transparent 65%),
+    radial-gradient(32rem 22rem at 55% 100%, var(--blob-c), transparent 65%);
+}
+
 /* ---------- Cards ---------- */
 .card,
 .timeline__item {
