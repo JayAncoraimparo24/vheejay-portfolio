@@ -14,20 +14,29 @@ function createPlaceholder(label) {
 /**
  * Figure that shows an image when `src` is set and loads, otherwise a placeholder.
  */
-export function mediaFrame({ src, alt, label, caption, ratio = '16 / 10', openFull = false }) {
+export function mediaFrame({ src, fullSrc = src, alt, label, caption, ratio = '16 / 10', openFull = false }) {
   const frame = el('figure', { class: 'media', style: `--media-ratio: ${ratio}` });
   const placeholder = createPlaceholder(label ?? alt);
   const box = el('div', { class: 'media__box' });
 
   if (src) {
+    // `src` is what the tile shows (a small copy); `fullSrc` is the full picture, used when it is opened
     const image = el('img', { class: 'media__img', src: siteUrl(src), alt, loading: 'lazy', decoding: 'async' });
-    image.addEventListener('error', () => box.replaceChildren(placeholder));
+    image.addEventListener('error', () => {
+      // If the small copy is missing, fall back to the full picture before giving up
+      if (fullSrc && fullSrc !== src && !image.dataset.triedFull) {
+        image.dataset.triedFull = 'true';
+        image.src = siteUrl(fullSrc);
+        return;
+      }
+      box.replaceChildren(placeholder);
+    });
     // With openFull, clicking the picture opens it at full size in a new tab.
     box.append(
       openFull
         ? el(
             'a',
-            { class: 'media__link', href: siteUrl(src), target: '_blank', rel: 'noopener noreferrer', 'aria-label': `Open full image: ${alt}` },
+            { class: 'media__link', href: siteUrl(fullSrc), target: '_blank', rel: 'noopener noreferrer', 'aria-label': `Open full image: ${alt}` },
             image,
           )
         : image,

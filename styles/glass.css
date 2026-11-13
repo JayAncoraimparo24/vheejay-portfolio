@@ -51,6 +51,15 @@
   animation-play-state: paused !important;
 }
 
+/* Off screen: nothing in the hero or the tools strip needs to keep moving */
+[data-offscreen],
+[data-offscreen]::before,
+[data-offscreen] *,
+[data-offscreen] *::before,
+[data-offscreen] *::after {
+  animation-play-state: paused !important;
+}
+
 /* The dot grid only drifts in the hero; the other sections (some very tall) keep still dots */
 .section--tint::before,
 .section--dark::before {

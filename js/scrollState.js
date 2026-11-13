@@ -7,6 +7,15 @@ export function initScrollState() {
   const root = document.documentElement;
   let timer = 0;
 
+  // Looping animations of the hero and the tools strip stop while they are off screen
+  // (nobody can see them), and start again when they come back.
+  if ('IntersectionObserver' in window) {
+    const watcher = new IntersectionObserver((entries) => {
+      entries.forEach(({ target, isIntersecting }) => target.toggleAttribute('data-offscreen', !isIntersecting));
+    });
+    document.querySelectorAll('.hero, .marquee').forEach((section) => watcher.observe(section));
+  }
+
   window.addEventListener(
     'scroll',
     () => {

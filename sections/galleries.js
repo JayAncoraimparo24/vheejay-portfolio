@@ -4,12 +4,14 @@ import { createSection } from '../components/section.js';
 import { createTabs } from '../components/tabs.js';
 import { icon } from '../components/icons.js';
 import { mediaFrame } from '../components/media.js';
+import { thumbOf } from '../js/config.js';
 
 /**
  * Photo galleries keep each picture's own proportions (masonry columns, no cropping)
  * and open the picture at full size when clicked.
  */
-const tile = ({ title, src, ratio }) => mediaFrame({ src, alt: title, label: title, caption: title, ratio: ratio ?? '4 / 3', openFull: true });
+const tile = ({ title, src, ratio }) =>
+  mediaFrame({ src: thumbOf(src), fullSrc: src, alt: title, label: title, caption: title, ratio: ratio ?? '4 / 3', openFull: true });
 
 const createGallery = (items) => el('div', { class: 'photo-masonry' }, items.map(tile));
 

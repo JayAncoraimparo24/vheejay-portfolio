@@ -1,5 +1,5 @@
 import { el } from '../js/dom.js';
-import { projectUrl } from '../js/config.js';
+import { projectUrl, thumbOf } from '../js/config.js';
 import { icon } from './icons.js';
 import { mediaFrame } from './media.js';
 import { tagList } from './tag.js';
@@ -41,7 +41,8 @@ export function projectCard(project) {
     'article',
     { class: 'card project-card' },
     mediaFrame({
-      src: cover?.src,
+      src: thumbOf(cover?.src), // a small copy for the card; the project page has the full pictures
+      fullSrc: cover?.src,
       alt: `${project.title} screenshot`,
       label: 'Project screenshot', // the title is right below, so do not repeat it here
     }),
