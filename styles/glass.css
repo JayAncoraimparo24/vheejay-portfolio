@@ -211,8 +211,14 @@
 /* ---------- Shapes: large things are softly rounded, small controls are pills or circles ----------
    (To go back to the earlier, less rounded look, delete this block.) */
 .card,
-.timeline__item {
+.timeline__item,
+.project-header,
+.pager__link {
   border-radius: 18px;
+}
+
+.achievement {
+  border-radius: 14px;
 }
 
 .media__box {
