@@ -6,6 +6,32 @@ import { createSnakeBorder } from '../components/snakeBorder.js';
 import { createFlipCard } from '../components/flipCard.js';
 import { siteUrl } from '../js/config.js';
 
+/** Round icon buttons under the location: email, LinkedIn, GitHub (each only when it is set in data/profile.js). */
+function createQuickLinks() {
+  const links = [
+    profile.email && { name: 'mail', label: 'Email me', href: `mailto:${profile.email}` },
+    profile.linkedin?.url && { name: 'linkedin', label: 'LinkedIn profile', href: profile.linkedin.url, external: true },
+    profile.github?.url && { name: 'github', label: 'GitHub profile', href: profile.github.url, external: true },
+  ].filter(Boolean);
+  if (!links.length) return null;
+
+  return el(
+    'ul',
+    { class: 'hero__links', 'aria-label': 'Quick contact links' },
+    links.map(({ name, label, href, external }) =>
+      el(
+        'li',
+        {},
+        el(
+          'a',
+          { class: 'hero__link', href, 'aria-label': label, title: label, ...(external && { target: '_blank', rel: 'noopener noreferrer' }) },
+          icon(name, 20),
+        ),
+      ),
+    ),
+  );
+}
+
 /** Back of the portrait card: a second picture with a short label. */
 function createPortraitBack({ src, alt, caption }) {
   return el(
@@ -53,6 +79,8 @@ export function createHero() {
         { class: 'hero__content' },
         el('p', { class: 'eyebrow', text: 'Portfolio' }),
         el('h1', { class: 'hero__title', id: 'hero-title', text: profile.name }),
+        // The job title comes right after the name, so it is the first thing a visitor learns
+        el('p', { class: 'hero__roles', text: profile.roles.join(' | ') }),
         profile.verse
           ? el(
               'p',
@@ -69,7 +97,6 @@ export function createHero() {
               el('footer', { text: `— ${profile.quote.author}` }),
             )
           : null,
-        el('p', { class: 'hero__roles', text: profile.roles.join(' | ') }),
         el(
           'div',
           { class: 'hero__actions' },
@@ -77,6 +104,7 @@ export function createHero() {
           button({ label: 'About Me', href: '#about', variant: 'secondary' }),
         ),
         el('p', { class: 'hero__location' }, icon('pin', 18), el('span', { text: profile.location })),
+        createQuickLinks(),
       ),
       createProfileImage(),
     ),

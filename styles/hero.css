@@ -162,11 +162,48 @@
   color: var(--color-muted);
 }
 
+/* The job title sits right under the name, so it is larger and bolder than before */
 .hero__roles {
-  font-size: var(--text-lg);
-  font-weight: 600;
+  margin-top: calc(-1 * var(--space-1));
+  font-size: var(--text-xl);
+  font-weight: 700;
   letter-spacing: 0.01em;
   color: var(--color-primary-dark);
+}
+
+/* Quick contact icons */
+.hero__links {
+  display: flex;
+  gap: var(--space-3);
+  margin-top: var(--space-1);
+}
+
+.hero__link {
+  display: grid;
+  place-items: center;
+  width: 2.5rem;
+  height: 2.5rem;
+  color: var(--color-primary-dark);
+  background: var(--glass-bg, rgb(255 255 255 / 60%));
+  border: 1px solid var(--glass-edge, var(--color-border));
+  border-radius: 50%;
+  box-shadow: var(--glass-shadow, var(--shadow-sm));
+  transition:
+    color var(--transition),
+    background var(--transition),
+    box-shadow var(--transition),
+    transform 320ms var(--ease-spring, ease);
+}
+
+.hero__link:hover {
+  color: var(--color-deep);
+  background: linear-gradient(135deg, #67e8f9, var(--color-primary));
+  box-shadow: 0 8px 20px rgb(6 182 212 / 35%);
+  transform: translateY(-3px) scale(1.06);
+}
+
+.hero__link:active {
+  transform: scale(0.95);
 }
 
 .hero__actions {
