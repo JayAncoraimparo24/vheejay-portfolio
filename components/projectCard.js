@@ -5,7 +5,7 @@ import { mediaFrame } from './media.js';
 import { tagList } from './tag.js';
 import { withSnakeBorder } from './snakeBorder.js';
 
-const MAX_CARD_TOOLS = 4; // the project page lists every tool
+const MAX_CARD_TOOLS = 3; // the project page lists every tool
 
 export function projectCard(project) {
   const cover = project.screenshots[0];

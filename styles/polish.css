@@ -222,6 +222,21 @@ html {
   font-size: var(--text-xs);
 }
 
+/* Shorter cards: the overview shows 2 lines here (the project page has the full text) */
+.project-card__overview {
+  -webkit-line-clamp: 2;
+  line-clamp: 2;
+}
+
+.project-card__body {
+  gap: var(--space-2);
+  padding-bottom: var(--space-3);
+}
+
+.project-card .link-arrow {
+  padding-top: var(--space-2);
+}
+
 /* The screenshot fades into the text below it (only when there is a picture, not on the placeholder) */
 .project-card .media__box:has(.media__img)::after {
   position: absolute;
